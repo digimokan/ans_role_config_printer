@@ -14,7 +14,7 @@
   become_user: root
   when: enable_print_to_pdf
 
-- name: "Enable 'cups' service to start at boot"
+- name: "Ensure 'cups' service is started, and enable it to start at boot"
   ansible.builtin.service:
     name: cups
     state: started
