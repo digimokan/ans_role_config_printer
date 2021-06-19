@@ -1,0 +1,23 @@
+- name: "Install the 'cups' print-client package"
+  community.general.pacman:
+    name: cups
+    state: present
+  become: true
+  become_user: root
+
+- name: "Install the 'cups-pdf' print-to-pdf-support package"
+  community.general.pacman:
+    name: cups-pdf
+    state: present
+    extra_args: "--asdeps"
+  become: true
+  become_user: root
+  when: enable_print_to_pdf
+
+- name: "Enable 'cups' service to start at boot"
+  ansible.builtin.service:
+    name: cups
+    enabled: yes
+  become: true
+  become_user: root
+

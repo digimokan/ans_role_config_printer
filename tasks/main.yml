@@ -1,0 +1,6 @@
+- name: "Install system print client, and required printer drivers"
+  ansible.builtin.include_tasks: install/main.yml
+
+- name: "Configure a printer for use"
+  ansible.builtin.include_tasks: configure/main.yml
+
