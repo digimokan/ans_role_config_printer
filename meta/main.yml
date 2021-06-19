@@ -1,0 +1,14 @@
+galaxy_info:
+  author: digimokan
+  description: "Configure a printer for use"
+  license: "MIT"
+  min_ansible_version: 2.7
+  platforms:
+    - name: Archlinux
+      versions:
+        - all
+  galaxy_tags:
+    - archlinux
+    - cups
+    - printer
+
