@@ -17,6 +17,7 @@
 - name: "Enable 'cups' service to start at boot"
   ansible.builtin.service:
     name: cups
+    state: started
     enabled: yes
   become: true
   become_user: root
