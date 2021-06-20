@@ -52,6 +52,13 @@ Configure a printer for use.
        - name: "Install and configure the Chromium browser"
          ansible.builtin.include_role:
            name: ans_role_config_printer
+         vars:
+           printer_id: "LaserBwPrinter"
+           printer_make: "Brother"
+           printer_model: "Brother HL-L2395DW"
+           printer_location: "Upstairs Study"
+           printer_ip_address: "172.2.11.20"
+           printer_mac_address: "112233AABBCC"
    ```
 
 ## Role Options
@@ -59,6 +66,26 @@ Configure a printer for use.
 See the role `defaults` file, for overridable vars:
 
   * [defaults/main.yml](../defaults/main.yml)
+
+Define these _required_ vars for the role:
+
+  * `printer_id`: the short ID of the printer (use alphanumeric chars only)
+  * `printer_make`: the manufacturer name ('Brother', 'Canon', or 'HP')
+  * `printer_model`: the full, official manufacturer-listed printer model
+  * `printer_location`: a description of where the printer is physically located
+  * `printer_ip_address`: the printer's IP address
+  * `printer_mac_address`: the printer's MAC address
+
+_NOTE:_ The value of `printer_id` is used by this role to track changes to the
+printer's setup. If you want to change the value of `printer_id` passed to
+this role (for a specific printer), first delete the printer by following these
+steps:
+
+   ```shell
+   # cupsreject LaserBwPrinter
+   # cupsdisable LaserBwPrinter
+   # lpadmin -x LaserBwPrinter
+   ```
 
 ## Contributing
 
