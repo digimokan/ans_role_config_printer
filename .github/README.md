@@ -16,8 +16,10 @@ Configure a printer for use.
 
 ## Purpose
 
-* Install required printer drivers for a Brother, Canon, or HP printer, and
-  configure it for use.
+* Install main system print client. Currently, [CUPS](https://www.cups.org/) is
+  used.
+* Install drivers for a specific make and model printer, and configure it for
+  use. See [Supported Makes and Models](../vars/main/).
 
 ## Supported Operating Systems
 

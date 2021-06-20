@@ -1,0 +1,4 @@
+# for a Canon printer, printer_model must be one of these supported models
+supported_canon_models:
+  - 'Canon Pixma MG6320'
+

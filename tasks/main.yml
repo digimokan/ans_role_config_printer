@@ -1,3 +1,6 @@
+- name: "Check required printer make/model/etc vars for definition, correctness"
+  ansible.builtin.include_tasks: check_supported_printer/main.yml
+
 - name: "Install system print client, and required printer drivers"
   ansible.builtin.include_tasks: install/main.yml
 
