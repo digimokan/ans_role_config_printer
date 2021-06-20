@@ -51,7 +51,7 @@ Configure a printer for use.
    - hosts: localhost
      connection: local
      tasks:
-       - name: "Install and configure the Chromium browser"
+       - name: "Install drivers and configure Brother HL-L2395DW printer"
          ansible.builtin.include_role:
            name: ans_role_config_printer
          vars:
