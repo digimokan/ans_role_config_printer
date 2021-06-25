@@ -9,7 +9,8 @@
   community.general.pacman:
     name: cups-pdf
     state: present
-    extra_args: "--asdeps"
+    # NOTE: cannot currently mark asdeps, since cups-pdf not tagged as opt pkg
+    # extra_args: "--asdeps"
   become: true
   become_user: root
   when: enable_print_to_pdf

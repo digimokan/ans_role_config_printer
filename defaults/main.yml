@@ -1,3 +1,6 @@
 # enable system-wide "print to PDF" option for all printing dialogs
 enable_print_to_pdf: true
 
+# if true, then only remove printer_id from system, and take no further action
+remove_printer_only: false
+
