@@ -1,0 +1,4 @@
+- name: "Delete printer '{{ printer_id }}', for a linux system"
+  ansible.builtin.include_tasks: linux/main.yml
+  when: ansible_system == "Linux"
+

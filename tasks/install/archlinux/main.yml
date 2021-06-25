@@ -1,3 +1,0 @@
-- name: "Install all print-client packages, and start the print client service"
-  ansible.builtin.include_tasks: print_client.yml
-

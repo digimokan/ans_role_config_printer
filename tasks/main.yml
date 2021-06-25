@@ -1,5 +1,9 @@
-- name: "Install system print client, and required printer drivers"
-  ansible.builtin.include_tasks: install/main.yml
+- name: "Install system print client"
+  ansible.builtin.include_tasks: print_client/main.yml
+
+- name: "Remove printer only, then take no further action"
+  ansible.builtin.include_tasks: remove_printer/main.yml
+  when: remove_printer_only
 
 # - name: "Configure a printer for use"
 #   ansible.builtin.include_tasks: configure/main.yml

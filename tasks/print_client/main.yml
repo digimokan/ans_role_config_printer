@@ -1,4 +1,4 @@
-- name: "Install print client and required printer drivers for Arch Linux"
+- name: "Install print client for Arch Linux"
   ansible.builtin.include_tasks: archlinux/main.yml
   when: ansible_os_family == "Archlinux"
 
