@@ -18,8 +18,11 @@ Configure a printer for use.
 
 * Install main system print client. Currently, [CUPS](https://www.cups.org/) is
   used.
-* Install drivers for a specific make and model printer, and configure it for
-  use. See [Supported Makes and Models](../vars/main/).
+* Configure a printer for use.
+
+_NOTE:_ The printer must support the
+[IPP Everywhere](https://www.pwg.org/ipp/everywhere.html) "driverless" printing
+protocol.
 
 ## Supported Operating Systems
 
@@ -55,12 +58,9 @@ Configure a printer for use.
          ansible.builtin.include_role:
            name: ans_role_config_printer
          vars:
-           printer_id: "LaserBwPrinter"
-           printer_make: "Brother"
-           printer_model: "Brother HL-L2395DW"
+           printer_id: "BrotherLaserBwPrinter"
            printer_location: "Upstairs Study"
            printer_ip_address: "172.2.11.20"
-           printer_mac_address: "11-22-33-AA-BB-CC"
    ```
 
 ## Role Options
@@ -72,11 +72,8 @@ See the role `defaults` file, for overridable vars:
 Define these _required_ vars for the role:
 
   * `printer_id`: the short ID of the printer (use alphanumeric chars only)
-  * `printer_make`: the printer make/manufacturer name (see [supported makes](../vars/main/make.yml))
-  * `printer_model`: the printer model name (see [supported models](../vars/main/))
   * `printer_location`: a description of where the printer is physically located
-  * `printer_ip_address`: the printer's IP address (specify as 'XX.XX.XX.XX')
-  * `printer_mac_address`: the printer's MAC address (specify as 'XX-XX-XX-XX-XX-XX')
+  * `printer_ip_address`: the printer's IP address (specify as 'XXX.XXX.XXX.XXX')
 
 _NOTE:_ The value of `printer_id` is used by this role to track changes to the
 printer's setup. If you want to change the value of `printer_id` passed to
@@ -84,9 +81,9 @@ this role (for a specific printer), first delete the printer by following these
 steps:
 
    ```shell
-   # cupsreject LaserBwPrinter
-   # cupsdisable LaserBwPrinter
-   # lpadmin -x LaserBwPrinter
+   # cupsreject BrotherLaserBwPrinter
+   # cupsdisable BrotherLaserBwPrinter
+   # lpadmin -x BrotherLaserBwPrinter
    ```
 
 ## Contributing
