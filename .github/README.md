@@ -24,6 +24,9 @@ _NOTE:_ The printer must support the
 [IPP Everywhere](https://www.pwg.org/ipp/everywhere.html) "driverless" printing
 protocol.
 
+_NOTE:_ Since IPP Everywhere is used, the printer must be on, and connected to
+the network, when this role is run, in order to query the printer for settings.
+
 ## Supported Operating Systems
 
 * Arch Linux.
