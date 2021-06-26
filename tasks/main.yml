@@ -5,6 +5,6 @@
   ansible.builtin.include_tasks: remove_printer/main.yml
   when: remove_printer_only
 
-# - name: "Configure a printer for use"
-#   ansible.builtin.include_tasks: configure/main.yml
+- name: "Configure a printer for use"
+  ansible.builtin.include_tasks: config_printer/main.yml
 

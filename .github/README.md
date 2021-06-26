@@ -76,9 +76,10 @@ Define these _required_ vars for the role:
   * `printer_ip_address`: the printer's IP address (specify as 'XXX.XXX.XXX.XXX')
 
 _NOTE:_ The value of `printer_id` is used by this role to track changes to the
-printer's setup. If you want to change the value of `printer_id` passed to
-this role (for a specific printer), first delete the printer by following these
-steps:
+printer's configuration. To change the value of `printer_id` passed to this role
+(for a previously-configured printer), first delete the printer. You can have
+this role delete the printer only (without re-configuring it), by setting the
+`remove_printer_only` option. Alternately, you can delete the printer manually:
 
    ```shell
    # cupsreject BrotherLaserBwPrinter

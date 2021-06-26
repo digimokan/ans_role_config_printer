@@ -1,0 +1,56 @@
+- name: "Initialize 'printer_config_required' to false"
+  ansible.builtin.set_fact:
+    printer_config_required: false
+
+- name: "Check if printer config exists at all on system"
+  block:
+    - name: "Check if printer '{{ printer_id }}' has an existing config"
+      ansible.builtin.command: lpstat -v {{ printer_id | quote }}
+      register: exists
+      changed_when: exists.rc > 0
+      failed_when: false
+    - name: "Since printer does not exist, set 'printer_config_required' to true"
+      ansible.builtin.set_fact:
+        printer_config_required: true
+      when: exists.changed
+
+- name: "Check printer ip address"
+  block:
+    - name: "Check printer '{{ printer_id }}' existing ip address"
+      ansible.builtin.command: lpstat -v {{ printer_id | quote }}
+      register: url_result
+      changed_when: false
+      failed_when: false
+    - name: "Extract printer '{{ printer_id }}' ip address from cmd output url"
+      ansible.builtin.set_fact:
+        existing_ip_addr: "{{ url_result.stdout | urlsplit('hostname') }}"
+    - name: "Since printer ip address differs, set 'printer_config_required' to true"
+      ansible.builtin.set_fact:
+        printer_config_required: true
+      when: existing_ip_addr != printer_ip_address
+  when: not exists.changed
+
+- name: "Test-debug-print the extracted existing printer ip address"
+  ansible.builtin.debug:
+    msg: "existing_ip_addr: {{ existing_ip_addr }}"
+
+- name: "Check printer ip location"
+  block:
+    - name: "Check printer '{{ printer_id }}' existing location"
+      ansible.builtin.command: lpstat -l -p {{ printer_location | quote }}
+      register: location_result
+      changed_when: false
+      failed_when: false
+    - name: "Extract printer '{{ printer_id }}' location from cmd output url"
+      ansible.builtin.set_fact:
+        existing_location: "{{ location_result.stdout | regex_search('Location: (\\S+)$)', '\\1', multiline=true) }}"
+    - name: "Since printer location differs, set 'printer_config_required' to true"
+      ansible.builtin.set_fact:
+        printer_config_required: true
+      when: existing_location != printer_location
+  when: not exists.changed
+
+- name: "Test-debug-print the extracted existing printer location"
+  ansible.builtin.debug:
+    msg: "existing_location: {{ existing_location }}"
+

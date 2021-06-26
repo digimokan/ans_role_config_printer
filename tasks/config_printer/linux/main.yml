@@ -1,0 +1,3 @@
+- name: "Check existing config values for printer '{{ printer_id }}'"
+  ansible.builtin.include_tasks: check_config.yml
+
