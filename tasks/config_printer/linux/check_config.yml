@@ -14,6 +14,10 @@
         printer_config_required: true
       when: exists.changed
 
+- name: "Test-debug-print the if printer config exists at all"
+  ansible.builtin.debug:
+    msg: "exists.changed: {{ exists.changed }}"
+
 - name: "Check printer ip address"
   block:
     - name: "Check printer '{{ printer_id }}' existing ip address"
