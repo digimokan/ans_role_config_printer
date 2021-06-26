@@ -1,0 +1,18 @@
+- name: "Configure printer '{{ printer_id }}'"
+  # Options Descriptions:
+  #   -p [str] is print-queue name (i.e. id)
+  #   -E enables and accept jobs (when it's after -p)
+  #   -v [str] is printer device uri
+  #   -L [str] is descriptive printer location
+  #   -o printer-error-policy is action to take on err
+  #   -m [str] is printer model (use IPP everywhere, driverless)
+  ansible.builtin.command: lpadmin -p {{ printer_id | quote }}
+                                   -E
+                                   -v "ipp://{{ printer_ip_address }}/ipp/print"
+                                   -L "{{ printer_location }}"
+                                   -o printer-error-policy=abort-job
+                                   -m everywhere
+  register: result
+  changed_when: result.rc == 0
+  failed_when: result.rc > 0
+
