@@ -1,4 +1,7 @@
 - name: "Configure printer '{{ printer_id }}'"
+  # Resources for CUPS CLI usage:
+  #   https://wiki.archlinux.org/title/CUPS#Usage
+  #   https://www.cups.org/doc/admin.html#DEVICES
   # Options Descriptions:
   #   -p [str] is print-queue name (i.e. id)
   #   -E enables and accept jobs (when it's after -p)

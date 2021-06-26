@@ -8,6 +8,7 @@ Configure a printer for use.
 ## Table Of Contents
 
 * [Purpose](#purpose)
+* [Requirements](#requirements)
 * [Supported Operating Systems](#supported-operating-systems)
 * [Quick Start](#quick-start)
     * [Use From Playbook](#use-from-playbook)
@@ -20,12 +21,22 @@ Configure a printer for use.
   used.
 * Configure a printer for use.
 
-_NOTE:_ The printer must support the
-[IPP Everywhere](https://www.pwg.org/ipp/everywhere.html) "driverless" printing
-protocol.
+## Requirements
 
-_NOTE:_ Since IPP Everywhere is used, the printer must be on, and connected to
-the network, when this role is run, in order to query the printer for settings.
+* The printer must support the
+  [IPP Everywhere](https://www.pwg.org/ipp/everywhere.html) "driverless"
+  printing protocol.
+
+* Since IPP Everywhere is used, the printer must be on, and connected to the
+  network, when this role is run, in order to query the printer for settings.
+
+* See the following resources to check IPP Everywhere support for a printer:
+
+    * [Legacy LPD vs IPP Everywhere Discussion](https://askubuntu.com/a/1102132)
+    * [IPP Everywhere Official Supported Printer List](https://www.pwg.org/printers/)
+      (may not be fully up-to-date)
+    * [Apple Official AirPrint Official Supported Printer List](https://support.apple.com/en-us/HT201311#printers)
+      (extensive list, and it's usable, since AirPrint depends on IPP Everywhere)
 
 ## Supported Operating Systems
 
