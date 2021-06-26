@@ -30,7 +30,7 @@
         existing_url: "{{ url_result.stdout | regex_search(' (\\S+)$', '\\1') }}"
     - name: "Extract printer '{{ printer_id }}' ip address from cmd output url"
       ansible.builtin.set_fact:
-        existing_ip_addr: "{{ existing_url | urlsplit('hostname') }}"
+        existing_ip_addr: "{{ existing_url | first | urlsplit('hostname') }}"
     - name: "Since printer ip address differs, set 'printer_config_required' to true"
       ansible.builtin.set_fact:
         printer_config_required: true
@@ -52,9 +52,12 @@
       register: location_result
       changed_when: false
       failed_when: false
+    - name: "Extract printer '{{ printer_id }}' settings array from cmd output"
+      ansible.builtin.set_fact:
+        existing_settings_arr: "{{ location_result.stdout | regex_search('Location: (\\S+)$', '\\1', multiline=true) }}"
     - name: "Extract printer '{{ printer_id }}' location from cmd output url"
       ansible.builtin.set_fact:
-        existing_location: "{{ location_result.stdout | regex_search('Location: (\\S+)$)', '\\1', multiline=true) }}"
+        existing_location: "{{ existing_settings_arr | first }}"
     - name: "Since printer location differs, set 'printer_config_required' to true"
       ansible.builtin.set_fact:
         printer_config_required: true
