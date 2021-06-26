@@ -48,7 +48,7 @@
 - name: "Check printer ip location"
   block:
     - name: "Check printer '{{ printer_id }}' existing location"
-      ansible.builtin.command: lpstat -l -p {{ printer_location | quote }}
+      ansible.builtin.command: lpstat -l -p {{ printer_id | quote }}
       register: location_result
       changed_when: false
       failed_when: false
