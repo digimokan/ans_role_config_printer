@@ -82,7 +82,8 @@ _NOTE:_ The value of `printer_id` is used by this role to track changes to the
 printer's configuration. To change the value of `printer_id` passed to this role
 (for a previously-configured printer), first delete the printer. You can have
 this role delete the printer only (without re-configuring it), by setting the
-`remove_printer_only` option. Alternately, you can delete the printer manually:
+[`remove_printer_only`](../defaults/main.yml) var. Alternately, you can delete
+the printer manually:
 
    ```shell
    # cupsreject BrotherLaserBwPrinter
