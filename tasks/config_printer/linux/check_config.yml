@@ -57,7 +57,7 @@
         msg: "location_result.stdout: {{ location_result.stdout }}"
     - name: "Extract printer '{{ printer_id }}' settings array from cmd output"
       ansible.builtin.set_fact:
-        existing_settings_arr: "{{ location_result.stdout | regex_findall('Location: (\\S+)$', multiline=True) }}"
+        existing_settings_arr: "{{ location_result.stdout | regex_findall('Location: (\\S+)$') }}"
     - name: "Test-debug-print the extracted settings array"
       ansible.builtin.debug:
         msg: "existing_settings_arr: {{ existing_settings_arr }}"
