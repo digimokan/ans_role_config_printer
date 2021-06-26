@@ -27,9 +27,10 @@
     - name: "Extract printer '{{ printer_id }}' ip address from cmd output url"
       ansible.builtin.set_fact:
         existing_ip_addr: "{{ existing_url | first | urlsplit('hostname') }}"
-    - name: "Since printer ip address differs, set 'printer_config_required' to true"
+    - name: "Since printer ip address changed, set 'printer_config_required' to true"
       ansible.builtin.set_fact:
         printer_config_required: true
+      changed_when: true
       when: existing_ip_addr != printer_ip_address
   when: not exists.changed
 
@@ -46,9 +47,10 @@
     - name: "Extract printer '{{ printer_id }}' location from cmd output url"
       ansible.builtin.set_fact:
         existing_location: "{{ existing_settings_arr | first }}"
-    - name: "Since printer location differs, set 'printer_config_required' to true"
+    - name: "Since printer location changed, set 'printer_config_required' to true"
       ansible.builtin.set_fact:
         printer_config_required: true
+      changed_when: true
       when: existing_location != printer_location
   when: not exists.changed
 
