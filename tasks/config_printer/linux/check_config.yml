@@ -25,14 +25,21 @@
       register: url_result
       changed_when: false
       failed_when: false
+    - name: "Extract printer '{{ printer_id }}' cmd output url"
+      ansible.builtin.set_fact:
+        existing_url: "{{ url_result.stdout | regex_search(' (\\S+)$', '\\1') }}"
     - name: "Extract printer '{{ printer_id }}' ip address from cmd output url"
       ansible.builtin.set_fact:
-        existing_ip_addr: "{{ url_result.stdout | urlsplit('hostname') }}"
+        existing_ip_addr: "{{ existing_url | urlsplit('hostname') }}"
     - name: "Since printer ip address differs, set 'printer_config_required' to true"
       ansible.builtin.set_fact:
         printer_config_required: true
       when: existing_ip_addr != printer_ip_address
   when: not exists.changed
+
+- name: "Test-debug-print the extracted existing printer url"
+  ansible.builtin.debug:
+    msg: "existing_url: {{ existing_url }}"
 
 - name: "Test-debug-print the extracted existing printer ip address"
   ansible.builtin.debug:
