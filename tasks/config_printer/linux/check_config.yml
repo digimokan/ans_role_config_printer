@@ -52,6 +52,9 @@
       register: location_result
       changed_when: false
       failed_when: false
+    - name: "Test-debug-print the loc-cmd lpstat stdout"
+      ansible.builtin.debug:
+        msg: "location_result.stdout: {{ location_result.stdout }}"
     - name: "Extract printer '{{ printer_id }}' settings array from cmd output"
       ansible.builtin.set_fact:
         existing_settings_arr: "{{ location_result.stdout | regex_findall('^\\s+Location: (\\S+)$', multiline=True) }}"
