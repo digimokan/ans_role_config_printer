@@ -35,7 +35,7 @@ Configure a printer for use.
     * [Legacy LPD vs IPP Everywhere Discussion](https://askubuntu.com/a/1102132)
     * [IPP Everywhere Official Supported Printer List](https://www.pwg.org/printers/)
       (may not be fully up-to-date)
-    * [Apple Official AirPrint Official Supported Printer List](https://support.apple.com/en-us/HT201311#printers)
+    * [Apple AirPrint Official Supported Printer List](https://support.apple.com/en-us/HT201311#printers)
       (extensive list, and it's usable, since AirPrint depends on IPP Everywhere)
 
 ## Supported Operating Systems
