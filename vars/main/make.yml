@@ -1,3 +1,0 @@
-# printer_make must be one of these supported makes
-supported_printer_makes: ['Brother', 'Canon', 'HP']
-

@@ -1,4 +1,0 @@
-# for a Brother printer, printer_model must be one of these supported models
-supported_brother_models:
-  - 'Brother HL-L2395DW'
-

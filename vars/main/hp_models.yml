@@ -1,4 +1,0 @@
-# for an HP printer, printer_model must be one of these supported models
-supported_hp_models:
-  - 'HP Office Jet Pro 8600'
-
