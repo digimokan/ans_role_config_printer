@@ -41,6 +41,7 @@ Configure a printer for use.
 ## Supported Operating Systems
 
 * Arch Linux.
+* FreeBSD.
 
 ## Quick Start
 
