@@ -1,4 +1,18 @@
-- name: "Delete printer '{{ printer_id }}', for a linux system"
-  ansible.builtin.include_tasks: linux/main.yml
-  when: ansible_system == "Linux"
+- name: "Prior to deleting printer '{{ printer_id }}', first reject incoming jobs"
+  ansible.builtin.command: cupsreject {{ printer_id | quote }}
+  register: result
+  changed_when: result.rc == 0
+  failed_when: result.rc > 1
+
+- name: "Prior to deleting printer '{{ printer_id }}', disable it"
+  ansible.builtin.command: cupsdisable {{ printer_id | quote }}
+  register: result
+  changed_when: result.rc == 0
+  failed_when: result.rc > 1
+
+- name: "Delete printer '{{ printer_id }}'"
+  ansible.builtin.command: lpadmin -x {{ printer_id | quote }}
+  register: result
+  changed_when: result.rc == 0
+  failed_when: result.rc > 1
 
