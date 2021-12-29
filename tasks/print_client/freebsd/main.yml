@@ -1,3 +1,5 @@
+# see https://docs.freebsd.org/en/articles/cups/
+
 - name: "Install the 'cups' print server/client package"
   ansible.builtin.package:
     name: cups
