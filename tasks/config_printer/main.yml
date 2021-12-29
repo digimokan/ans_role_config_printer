@@ -1,4 +1,7 @@
-- name: "Configure printer '{{ printer_id }}', for a linux system"
-  ansible.builtin.include_tasks: linux/main.yml
-  when: ansible_system == "Linux"
+- name: "Check existing config values for printer '{{ printer_id }}'"
+  ansible.builtin.include_tasks: check_config.yml
+
+- name: "Configure (or re-configure) printer '{{ printer_id }}'"
+  ansible.builtin.include_tasks: do_config.yml
+  when: printer_config_required
 
