@@ -1,4 +1,5 @@
-# see https://docs.freebsd.org/en/articles/cups/
+# Follow all steps, for both print-server and print-client:
+#  https://docs.freebsd.org/en/articles/cups/
 
 - name: "Install the 'cups' print server/client package"
   ansible.builtin.package:
@@ -14,4 +15,12 @@
   become: true
   become_user: root
   when: enable_print_to_pdf
+
+- name: "Ensure 'cupsd' service is started, and enable it to start at boot"
+  ansible.builtin.service:
+    name: cupsd
+    state: started
+    enabled: yes
+  become: true
+  become_user: root
 
